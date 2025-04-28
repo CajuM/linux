@@ -2126,6 +2126,10 @@ int kvm_emulate_invd(struct kvm_vcpu *vcpu);
 int kvm_emulate_mwait(struct kvm_vcpu *vcpu);
 int kvm_handle_invalid_op(struct kvm_vcpu *vcpu);
 int kvm_emulate_monitor(struct kvm_vcpu *vcpu);
+int kvm_handle_rdrand(struct kvm_vcpu *vcpu);
+int kvm_handle_rdseed(struct kvm_vcpu *vcpu);
+int kvm_handle_rdtsc(struct kvm_vcpu *vcpu);
+int kvm_handle_rdtscp(struct kvm_vcpu *vcpu);
 
 int kvm_fast_pio(struct kvm_vcpu *vcpu, int size, unsigned short port, int in);
 int kvm_emulate_cpuid(struct kvm_vcpu *vcpu);

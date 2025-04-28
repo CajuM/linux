@@ -4492,8 +4492,7 @@ static u32 vmx_exec_control(struct vcpu_vmx *vmx)
 	 * Not used by KVM, but fully supported for nesting, i.e. are allowed in
 	 * vmcs12 and propagated to vmcs02 when set in vmcs12.
 	 */
-	exec_control &= ~(CPU_BASED_RDTSC_EXITING |
-			  CPU_BASED_USE_IO_BITMAPS |
+	exec_control &= ~(CPU_BASED_USE_IO_BITMAPS |
 			  CPU_BASED_MONITOR_TRAP_FLAG |
 			  CPU_BASED_PAUSE_EXITING);
 
@@ -6162,8 +6161,10 @@ static int (*kvm_vmx_exit_handlers[])(struct kvm_vcpu *vcpu) = {
 	[EXIT_REASON_MONITOR_INSTRUCTION]     = kvm_emulate_monitor,
 	[EXIT_REASON_INVEPT]                  = handle_vmx_instruction,
 	[EXIT_REASON_INVVPID]                 = handle_vmx_instruction,
-	[EXIT_REASON_RDRAND]                  = kvm_handle_invalid_op,
-	[EXIT_REASON_RDSEED]                  = kvm_handle_invalid_op,
+	[EXIT_REASON_RDRAND]                  = kvm_handle_rdrand,
+	[EXIT_REASON_RDSEED]                  = kvm_handle_rdseed,
+	[EXIT_REASON_RDTSC]                   = kvm_handle_rdtsc,
+	[EXIT_REASON_RDTSCP]                  = kvm_handle_rdtscp,
 	[EXIT_REASON_PML_FULL]		      = handle_pml_full,
 	[EXIT_REASON_INVPCID]                 = handle_invpcid,
 	[EXIT_REASON_VMFUNC]		      = handle_vmx_instruction,

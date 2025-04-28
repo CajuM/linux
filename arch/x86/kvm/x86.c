@@ -2077,6 +2077,35 @@ int kvm_handle_invalid_op(struct kvm_vcpu *vcpu)
 }
 EXPORT_SYMBOL_GPL(kvm_handle_invalid_op);
 
+static int kvm_intercept_op(struct kvm_vcpu *vcpu, u32 exit_reason)
+{
+	vcpu->run->exit_reason = exit_reason;
+	return 0;
+}
+
+int kvm_handle_rdrand(struct kvm_vcpu *vcpu)
+{
+	return kvm_intercept_op(vcpu, KVM_EXIT_X86_RDRAND);
+}
+EXPORT_SYMBOL_GPL(kvm_handle_rdrand);
+
+int kvm_handle_rdseed(struct kvm_vcpu *vcpu)
+{
+	return kvm_intercept_op(vcpu, KVM_EXIT_X86_RDSEED);
+}
+EXPORT_SYMBOL_GPL(kvm_handle_rdseed);
+
+int kvm_handle_rdtsc(struct kvm_vcpu *vcpu)
+{
+	return kvm_intercept_op(vcpu, KVM_EXIT_X86_RDTSC);
+}
+EXPORT_SYMBOL_GPL(kvm_handle_rdtsc);
+
+int kvm_handle_rdtscp(struct kvm_vcpu *vcpu)
+{
+	return kvm_intercept_op(vcpu, KVM_EXIT_X86_RDTSCP);
+}
+EXPORT_SYMBOL_GPL(kvm_handle_rdtscp);
 
 static int kvm_emulate_monitor_mwait(struct kvm_vcpu *vcpu, const char *insn)
 {

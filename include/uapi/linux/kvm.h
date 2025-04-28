@@ -178,6 +178,10 @@ struct kvm_xen_exit {
 #define KVM_EXIT_NOTIFY           37
 #define KVM_EXIT_LOONGARCH_IOCSR  38
 #define KVM_EXIT_MEMORY_FAULT     39
+#define KVM_EXIT_X86_RDRAND       40
+#define KVM_EXIT_X86_RDSEED       41
+#define KVM_EXIT_X86_RDTSC        42
+#define KVM_EXIT_X86_RDTSCP       43
 
 /* For KVM_EXIT_INTERNAL_ERROR */
 /* Emulate instruction failed. */
